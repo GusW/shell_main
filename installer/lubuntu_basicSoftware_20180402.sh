@@ -1,7 +1,7 @@
 #!/bin/bash
 
-gitUsername="Gustavo Watanabe"
-gitUseremail="gustavo@2xt.com.br"
+gitUsername="GusW"
+gitUseremail="gustavo.watanabe@gmail.com"
 
 apt-get update
 apt-get install gimp -y
@@ -34,7 +34,7 @@ pip3 install jupyter
 
 ########################################################################################################## ~/.gitconfig
 # [user]
-# 	email = gustavo@2xt.com.br
+# 	email = gustavo.watanabe@gmail.com
 # 	name = Gustavo Watanabe
 
 # [core]
