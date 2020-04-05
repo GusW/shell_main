@@ -12,17 +12,16 @@ apt-get install gawk -y
 apt-get install terminator -y
 apt-get install virtualenv -y
 apt-get install gparted -y
-# apt-get install mysql-server -y
-# apt-get install mysql-workbench -y
 apt-get install golang-go -y
 apt-get install meld -y
+apt-get install transmission -y
 apt-get install git
 
 git config --global user.name $gitUsername
 git config --global user.email $gitUseremail
 
+# dependencies
 
-#dependencies
 # apt-get install python-psycopg2 -y
 # apt-get install libxml2-dev libxslt-dev -y
 # apt-get install git-core -y
@@ -33,6 +32,32 @@ git config --global user.email $gitUseremail
 # pip3 install --upgrade setuptools
 # pip3 install --upgrade pip
 # pip3 install jupyter
+
+############################################ Databases and related
+
+# add-apt-repository -y ppa:linuxgndu/sqlitebrowser
+# apt-get update
+# sudo apt-get install sqlitebrowser
+# apt-get install mysql-server -y
+# apt-get install mysql-workbench -y
+
+# pgAdmin4
+# mkdir pgAdmin4
+# cd pgAdmin4
+# virtualenv pgAdmin4
+
+# https://linuxhint.com/install-postgresql-10-on-ubuntu/
+# https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.1/pip/
+# https://askubuntu.com/questions/831262/how-to-install-pgadmin-4-in-desktop-mode-on-ubuntu
+
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+# sudo docker network create   --driver=bridge  --subnet=172.18.0.0/16  cdocker
+# sudo docker run --name seguros_db --net cdocker --ip 172.18.0.10 --restart unless-stopped -e POSTGRES_PASSWORD=marreta -d postgres
+
+############################################ apps
+
+# https://pencil.evolus.vn/Downloads.html
+# https://code.visualstudio.com/
 
 ############################################ ~/.gitconfig
 # [user]
@@ -87,28 +112,8 @@ git config --global user.email $gitUseremail
 # 	[diff]
 # 		tool = meld
 
-################################################################################################################## apps
+############################################ visual studio code preferences
 
-# pgAdmin4
-# mkdir pgAdmin4
-# cd pgAdmin4
-# virtualenv pgAdmin4
-
-# https://linuxhint.com/install-postgresql-10-on-ubuntu/
-# https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.1/pip/
-# https://askubuntu.com/questions/831262/how-to-install-pgadmin-4-in-desktop-mode-on-ubuntu
-
-# https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
-# sudo docker network create   --driver=bridge  --subnet=172.18.0.0/16  cdocker
-# sudo docker run --name seguros_db --net cdocker --ip 172.18.0.10 --restart unless-stopped -e POSTGRES_PASSWORD=marreta -d postgres
-
-
-# https://www.google.com/chrome/
-# https://pencil.evolus.vn/Downloads.html
-# https://code.visualstudio.com/
-
-
-######################################################################################## visual studio code preferences
 # {
 #     "diffEditor.renderSideBySide": false,
 
