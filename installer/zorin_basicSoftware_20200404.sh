@@ -20,6 +20,11 @@ apt-get install git
 git config --global user.name $gitUsername
 git config --global user.email $gitUseremail
 
+# unetbootin
+add-apt-repository ppa:gezakovacs/ppa
+apt-get update
+apt-get install unetbootin -y
+
 # dependencies
 
 # apt-get install python-psycopg2 -y
