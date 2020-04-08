@@ -58,6 +58,8 @@ git config --global user.email $gitUseremail
 
 # https://pencil.evolus.vn/Downloads.html
 # https://code.visualstudio.com/
+# https://www.postman.com/downloads/
+
 
 ############################################ ~/.gitconfig
 # [user]
@@ -112,7 +114,7 @@ git config --global user.email $gitUseremail
 # 	[diff]
 # 		tool = meld
 
-############################################ visual studio code preferences
+############################################ ~/.config/Code/User/settings.json
 
 # {
 #     "diffEditor.renderSideBySide": false,
