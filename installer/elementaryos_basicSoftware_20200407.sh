@@ -4,8 +4,8 @@ gitUsername="Gustavo Watanabe"
 gitUseremail="gustavo.watanabe@gmail.com"
 
 apt-get update
+apt-get install gnome-system-monitor -y
 apt-get install gimp -y
-apt-get install gedit -y
 apt-get install vim -y
 apt-get install sshpass -y
 apt-get install gawk -y
@@ -15,16 +15,29 @@ apt-get install gparted -y
 apt-get install golang-go -y
 apt-get install meld -y
 apt-get install transmission -y
-apt-get install git -y
+apt-get install libreoffice -y
+apt-get install snapd -y
+apt-get install gdebi -y
+apt-get install software-properties-common -y
 
+# proper git
+apt-get install git -y
 git config --global user.name $gitUsername
 git config --global user.email $gitUseremail
 
-# unetbootin
-apt install software-properties-common -y
-add-apt-repository ppa:gezakovacs/ppa
+add-apt-repository ppa:fish-shell/release-3 # fish shell
+add-apt-repository ppa:gezakovacs/ppa       # unetbootin
 apt-get update
+apt-get install fish -y
 apt-get install unetbootin -y
+
+# docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+rm get-docker.sh
+
+# docker images
+docker pull postgres # https://hub.docker.com/_/postgres
 
 # dependencies
 
@@ -65,7 +78,7 @@ apt-get install unetbootin -y
 # https://pencil.evolus.vn/Downloads.html
 # https://code.visualstudio.com/
 # https://www.postman.com/downloads/
-
+# https://www.4kdownload.com/downloads
 
 ############################################ ~/.gitconfig
 # [user]
@@ -163,6 +176,7 @@ apt-get install unetbootin -y
 #     "window.menuBarVisibility": "toggle",
 #     "vsicons.projectDetection.disableDetect": true,
 #     "workbench.iconTheme": "vscode-icons",
+#     "workbench.colorTheme": "Atom One Dark",
 
 #     "editor.minimap.enabled": true,
 #     "editor.minimap.renderCharacters": false,
@@ -181,7 +195,6 @@ apt-get install unetbootin -y
 #     },
 #     "workbench.startupEditor": "newUntitledFile",
 #     "editor.formatOnPaste": false,
-#     "editor.autoIndent": false,
 #     "emmet.triggerExpansionOnTab": true,
 #     "extensions.ignoreRecommendations": false,
 #     "gitlens.advanced.messages": {
