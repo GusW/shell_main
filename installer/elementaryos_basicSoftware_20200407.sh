@@ -4,6 +4,7 @@ gitUsername="Gustavo Watanabe"
 gitUseremail="gustavo.watanabe@gmail.com"
 
 apt-get update
+apt-get install tree -y
 apt-get install gnome-system-monitor -y
 apt-get install gimp -y
 apt-get install vim -y
@@ -38,6 +39,39 @@ rm get-docker.sh
 
 # docker images
 docker pull postgres # https://hub.docker.com/_/postgres
+
+# multi-touch trackpad
+apt-get install xdotool wmctrl libinput-tools -y
+mkdir ~/apps
+cd ~/apps
+git clone http://github.com/bulletmark/libinput-gestures
+cd libinput-gestures
+make install #./libinput-gestures-setup install
+touch ~/.config/libinput-gestures.conf
+echo "gesture swipe up 3 xdotool key ctrl+alt+Up" > ~/.config/libinput-gestures.conf
+echo "gesture swipe right 3 xdotool key ctrl+alt+Right" >> ~/.config/libinput-gestures.conf
+echo "gesture swipe left 3 xdotool key ctrl+alt+Left" >> ~/.config/libinput-gestures.conf
+libinput-gestures-setup autostart
+libinput-gestures-setup restart
+gpasswd -a $USER input
+# log off and on again
+
+# keyboard shortcuts
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
 
 # dependencies
 
