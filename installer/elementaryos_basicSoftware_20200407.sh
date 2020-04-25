@@ -31,6 +31,8 @@ add-apt-repository ppa:gezakovacs/ppa       # unetbootin
 apt-get update
 apt-get install fish -y
 apt-get install unetbootin -y
+apt-get install dconf-editor -y
+# dconf-editor => search files > preferences > single click
 
 # docker
 curl -fsSL https://get.docker.com -o get-docker.sh
