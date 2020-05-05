@@ -1,7 +1,7 @@
 #!/bin/bash
 
 gitUsername="Gustavo Watanabe"
-gitUseremail="gustavo.watanabe@gmail.com"
+userEmail="gustavo.watanabe@gmail.com"
 
 apt-get update
 apt-get install tree -y
@@ -20,11 +20,15 @@ apt-get install libreoffice -y
 apt-get install snapd -y
 apt-get install gdebi -y
 apt-get install software-properties-common -y
+apt-get install firefox -y
+apt-get remove epiphany-browser -y
 
 # proper git
 apt-get install git -y
 git config --global user.name $gitUsername
-git config --global user.email $gitUseremail
+git config --global user.email $userEmail
+
+apt-get install tlp tlp-rdw -y              # save energy blocking background tasks
 
 add-apt-repository ppa:fish-shell/release-3 # fish shell
 add-apt-repository ppa:gezakovacs/ppa       # unetbootin
@@ -57,6 +61,48 @@ libinput-gestures-setup autostart
 libinput-gestures-setup restart
 gpasswd -a $USER input
 # log off and on again
+
+# generate SSH Keys
+# ssh-keygen -t rsa -C "gustavo.watanabe@gmail.com"
+# chmod 0700 ~/.ssh
+# chmod 0600 ~/.ssh/id_rsa
+# chmod 0644 ~/.ssh/id_rsa.pub
+
+# touch ~/.bash_aliases
+# alias lt='ls --human-readable --size -1 -S --classify'
+# alias sshoci01='ssh -i ~/.ssh/id_rsa opc@<changeThisIP>'
+
+# touch ~/.local/share/applications/firefox.desktop
+# [Desktop Entry]
+# Version=76.0
+# Type=Application
+# Name=Firefox Dev
+# Exec=/home/gusw/apps/firefox/firefox
+# Icon=/home/gusw/apps/firefox/icons/updater.png
+
+# install jvm only!!!
+# https://www.java.com/en/download/linux_manual.jsp
+# mv Downloads/jre-8u251-linux-x64.tar.gz /usr/lib/jvm/
+# cd /usr/lib/jvm/
+# tar zxvf /usr/lib/jvm/jre-8u251-linux-x64.tar.gz
+# rm /usr/lib/jvm/jre-8u251-linux-x64.tar.gz
+# update-alternatives --install "/usr/bin/java" "java" "/usr/bin/jvm/jre1.8.0_251/bin/java" 1
+# update-alternatives --set java /usr/bin/jvm/jre1.8.0_251/bin/java
+# java -version
+
+# SDKMan - Java Env Manager
+# curl -s "https://get.sdkman.io" | bash
+# source "$HOME/.sdkman/bin/sdkman-init.sh"
+# sdk help
+# sdk list
+# sdk list java
+# sdk install java <someIndentifier>
+# sdk use java <someIndentifier>
+# sdk default java <someIndentifier>
+
+# NodeJS & npm
+# curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+# sudo apt install nodejs
 
 # keyboard shortcuts
 #
