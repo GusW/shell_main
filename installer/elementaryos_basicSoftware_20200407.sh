@@ -42,9 +42,31 @@ apt-get install dconf-editor -y
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 rm get-docker.sh
+# apt install docker.io
 
 # docker images
 docker pull postgres # https://hub.docker.com/_/postgres
+
+# python dependencies
+apt install python-pip python3-pip -y
+pip install --upgrade pip
+
+# generate SSH Keys
+ssh-keygen -t rsa -C $userEmail
+chmod 0700 ~/.ssh
+chmod 0600 ~/.ssh/id_rsa
+chmod 0644 ~/.ssh/id_rsa.pub
+
+touch ~/.bash_aliases
+alias lt='ls --human-readable --size -1 -S --classify'
+
+# touch ~/.local/share/applications/firefox.desktop
+# [Desktop Entry]
+# Version=76.0
+# Type=Application
+# Name=Firefox Dev
+# Exec=/home/gusw/apps/firefox/firefox
+# Icon=/home/gusw/apps/firefox/icons/updater.png # TODO change icon name and ref
 
 # multi-touch trackpad
 apt-get install xdotool wmctrl libinput-tools -y
@@ -60,25 +82,7 @@ echo "gesture swipe left 3 xdotool key ctrl+alt+Left" >> ~/.config/libinput-gest
 libinput-gestures-setup autostart
 libinput-gestures-setup restart
 gpasswd -a $USER input
-# log off and on again
-
-# generate SSH Keys
-# ssh-keygen -t rsa -C "gustavo.watanabe@gmail.com"
-# chmod 0700 ~/.ssh
-# chmod 0600 ~/.ssh/id_rsa
-# chmod 0644 ~/.ssh/id_rsa.pub
-
-# touch ~/.bash_aliases
-# alias lt='ls --human-readable --size -1 -S --classify'
-# alias sshoci01='ssh -i ~/.ssh/id_rsa opc@<changeThisIP>'
-
-# touch ~/.local/share/applications/firefox.desktop
-# [Desktop Entry]
-# Version=76.0
-# Type=Application
-# Name=Firefox Dev
-# Exec=/home/gusw/apps/firefox/firefox
-# Icon=/home/gusw/apps/firefox/icons/updater.png
+echo "***** LOG OUT AND IN AGAIN *****"
 
 # install jvm only!!!
 # https://www.java.com/en/download/linux_manual.jsp
@@ -89,16 +93,6 @@ gpasswd -a $USER input
 # update-alternatives --install "/usr/bin/java" "java" "/usr/bin/jvm/jre1.8.0_251/bin/java" 1
 # update-alternatives --set java /usr/bin/jvm/jre1.8.0_251/bin/java
 # java -version
-
-# SDKMan - Java Env Manager
-# curl -s "https://get.sdkman.io" | bash
-# source "$HOME/.sdkman/bin/sdkman-init.sh"
-# sdk help
-# sdk list
-# sdk list java
-# sdk install java <someIndentifier>
-# sdk use java <someIndentifier>
-# sdk default java <someIndentifier>
 
 # NodeJS & npm
 # curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
