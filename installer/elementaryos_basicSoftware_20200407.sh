@@ -39,9 +39,26 @@ apt-get install dconf-editor -y
 # dconf-editor => search files > preferences > single click
 
 # docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-rm get-docker.sh
+apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+apt-key fingerprint 0EBFCD88
+
+add-apt-repository \
+"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+bionic \
+stable"
+apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io -y
+
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sh get-docker.sh
+# rm get-docker.sh
 # apt install docker.io
 
 # docker images
@@ -67,6 +84,15 @@ alias lt='ls --human-readable --size -1 -S --classify'
 # Name=Firefox Dev
 # Exec=/home/gusw/apps/firefox/firefox
 # Icon=/home/gusw/apps/firefox/icons/updater.png # TODO change icon name and ref
+
+# touch ~/.local/share/applications/postman.desktop
+# [Desktop Entry]
+# Version=76.0
+# Type=Application
+# Name=Postman
+# Exec=/home/gusw/apps/Postman/app/Postman
+# Icon=/home/gusw/apps/Postman/app/resources/app/assets/icon.png
+
 
 # multi-touch trackpad
 apt-get install xdotool wmctrl libinput-tools -y
