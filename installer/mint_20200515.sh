@@ -8,13 +8,16 @@ apt-get install terminator -y
 apt-get install vim -y
 apt-get install tree -y
 apt-get install gimp -y
+apt-get install vlc -y
 apt-get install sshpass -y
 apt-get install gparted -y
 apt-get install gedit -y
 
 # python dependencies
 apt install python-pip python3-pip -y
+apt install libpq-dev python3-dev
 pip install --upgrade pip
+pip install --upgrade setuptools
 apt-get install virtualenv -y
 
 apt-get install golang-go -y
@@ -45,8 +48,35 @@ bionic \
 stable"
 apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io -y
+# Docker compose
+curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+docker-compose --version
 # Docker images
 docker pull postgres # https://hub.docker.com/_/postgres
+
+# Kubernetes (kubectl)
+apt-get update && apt-get install -y apt-transport-https gnupg2
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
+apt-get update && apt-get install -y kubectl
+# Minikube
+wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+chmod +x minikube-linux-amd64
+mv minikube-linux-amd64 /usr/local/bin/minikube
+# KVM Hypervisor
+apt-get -y install qemu-kvm libvirt-bin virt-top  libguestfs-tools virtinst bridge-utils
+modprobe vhost_net
+lsmod | grep vhost
+echo "vhost_net" | tee -a /etc/modules
+# docker-kvm-driver
+curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2
+chmod +x docker-machine-driver-kvm2
+mv docker-machine-driver-kvm2 /usr/local/bin/
+docker-machine-driver-kvm2 version
+apt install ebtables iptables dnsmasq
+systemctl restart libvirtd
+minikube config set vm-driver kvm2
 
 # generate SSH Keys
 ssh-keygen -t rsa -C $userEmail
@@ -66,6 +96,9 @@ touch ~/.config/libinput-gestures.conf
 echo "gesture swipe up 3 xdotool key ctrl+alt+Up" > ~/.config/libinput-gestures.conf
 echo "gesture swipe right 3 xdotool key ctrl+alt+Right" >> ~/.config/libinput-gestures.conf
 echo "gesture swipe left 3 xdotool key ctrl+alt+Left" >> ~/.config/libinput-gestures.conf
+echo "gesture swipe down 3 xdotool key ctrl+alt+Down" >> ~/.config/libinput-gestures.conf
+echo "gesture swipe right 4 xdotool key alt+super+Right" >> ~/.config/libinput-gestures.conf
+echo "gesture swipe left 4 xdotool key alt+super+Left" >> ~/.config/libinput-gestures.conf
 
 libinput-gestures-setup autostart
 libinput-gestures-setup restart
@@ -74,8 +107,17 @@ echo "***** LOG OUT AND IN AGAIN *****"
 
 ############################################ apps
 
+# https://www.google.com/intl/en_us/chrome/
+# https://www.4kdownload.com/downloads
 # https://pencil.evolus.vn/Downloads.html
 # https://code.visualstudio.com/
 # https://www.postman.com/downloads/
-# https://www.4kdownload.com/downloads
+# https://www.virtualbox.org/wiki/Linux_Downloads
+# https://download.virtualbox.org/virtualbox/6.1.8/Oracle_VM_VirtualBox_Extension_Pack-6.1.8.vbox-extpack
+
+# https://zoom.us/download
+# https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html
+### cp <MyWorkspace.cert> /opt/Citrix/ICAClient/keystore/cacerts
+### sudo /opt/Citrix/ICAClient/util/ctx_rehash
+
 
