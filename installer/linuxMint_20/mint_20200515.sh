@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# UPDATED 2020-07-09
+# UPDATED 2020-08-04
 
-#######################################################################################################################
-#################### GIT
+################################################################################################################### GIT
 
 gitUsername="Gustavo Watanabe"
 userEmail="gustavo.watanabe@gmail.com"
@@ -12,10 +11,10 @@ apt-get install git -y
 git config --global user.name $gitUsername
 git config --global user.email $userEmail
 
-#######################################################################################################################
-#################### SYSTEM
+################################################################################################################ SYSTEM
 
-add-apt-repository ppa:fish-shell/release-3 # fish shell
+add-apt-repository ppa:fish-shell/release-3
+add-apt-repository ppa:alessandro-strada/ppa
 apt-get update
 apt-get install htop -y
 apt-get install vim -y
@@ -23,10 +22,13 @@ apt-get install tree -y
 apt-get install terminator -y
 apt-get install sshpass -y
 apt-get install fish -y
+apt install google-drive-ocamlfuse
 echo "alias lt='ls --human-readable --size -1 -S --classify'" >> ~/.bash_aliases
+mkdir -p ~/GoogleDrive
+google-drive-ocamlfuse
+google-drive-ocamlfuse ~/GoogleDrive
 
-#######################################################################################################################
-#################### DESKTOP APPS
+########################################################################################################## DESKTOP APPS
 
 apt-get install gparted -y
 apt-get install gimp -y
@@ -58,8 +60,7 @@ libinput-gestures-setup restart
 gpasswd -a $USER input
 echo "***** LOG OUT AND IN AGAIN *****"
 
-#######################################################################################################################
-#################### PROGRAMMING
+########################################################################################################### PROGRAMMING
 
 # python dependencies
 apt install python3-pip -y
@@ -67,6 +68,7 @@ apt install libpq-dev python3-dev
 pip3 install --upgrade pip
 pip3 install --upgrade setuptools
 apt-get install virtualenv -y
+apt-get install python3-venv
 
 apt-get install meld -y
 
@@ -122,6 +124,9 @@ minikube config set vm-driver kvm2
 # unzip terraform
 # mv terraform ~/.local/bin
 
+# Ansible
+apt install ansible -y
+
 # generate SSH Keys
 ssh-keygen -t rsa -C $userEmail
 chmod 0700 ~/.ssh
@@ -141,6 +146,19 @@ chmod 0644 ~/.ssh/id_rsa.pub
 # NodeJS & npm
 # curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 # sudo apt install nodejs
+
+# RDESKTOP
+apt install libx11-dev -y
+apt install libxcursor-dev -y
+apt install libtasn1-6-dev -y
+apt install nettle-dev -y
+apt install gnutls-dev -y
+# https://github.com/rdesktop/rdesktop/releases/tag/v1.9.0
+# ./configure --disable-credssp --disable-smartcard
+# make
+# make install
+# rdesktop -u <username> <hostname>
+
 
 #################### ~/.gitconfig
 [user]
