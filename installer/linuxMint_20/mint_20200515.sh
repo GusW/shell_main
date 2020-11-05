@@ -15,6 +15,7 @@ git config --global user.email $userEmail
 
 add-apt-repository ppa:fish-shell/release-3
 add-apt-repository ppa:alessandro-strada/ppa
+apt-add-repository ppa:remmina-ppa-team/remmina-next
 apt-get update
 apt-get install htop -y
 apt-get install vim -y
@@ -22,7 +23,8 @@ apt-get install tree -y
 apt-get install terminator -y
 apt-get install sshpass -y
 apt-get install fish -y
-apt install google-drive-ocamlfuse
+apt install google-drive-ocamlfuse -y
+apt install remmina remmina-plugin-rdp remmina-plugin-secret -y
 echo "alias lt='ls --human-readable --size -1 -S --classify'" >> ~/.bash_aliases
 mkdir -p ~/GoogleDrive
 google-drive-ocamlfuse
