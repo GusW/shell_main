@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# UPDATED 2020-08-04
+# UPDATED 2020-11-22
 
 ################################################################################################################### GIT
 
@@ -69,8 +69,18 @@ apt install python3-pip -y
 apt install libpq-dev python3-dev
 pip3 install --upgrade pip
 pip3 install --upgrade setuptools
-apt-get install virtualenv -y
-apt-get install python3-venv
+apt install virtualenv -y
+apt install python3-venv
+apt install -y make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+
+curl https://pyenv.run | bash
+
+# pyenv install --list
+# pyenv install v <aVersion>
+# pyenv global <aVersion>
+# python -m test
 
 apt-get install meld -y
 
@@ -149,6 +159,14 @@ chmod 0644 ~/.ssh/id_rsa.pub
 # curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 # sudo apt install nodejs
 
+# AWS SHELL CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# AWS ELASTIC BEANSTALK SHELL CLI
+https://github.com/aws/aws-elastic-beanstalk-cli-setup
+
 # RDESKTOP
 apt install libx11-dev -y
 apt install libxcursor-dev -y
@@ -217,8 +235,6 @@ apt install gnutls-dev -y
 
 #################### Visual Studio Code
 https://code.visualstudio.com/
-# Python
-# ESLint
 
 
 #################### ~/.config/Code/User/settings.json
@@ -308,7 +324,15 @@ https://code.visualstudio.com/
 #######################################################################################################################
 #################### DESKTOP APPS
 
-https://www.google.com/intl/en_us/chrome/
+# Software Manager
+chromium 
+stacer
+vlc
+gimp
+notepadqq
+ulauncher
+
+# Web
 https://www.4kdownload.com/downloads
 https://pencil.evolus.vn/Downloads.html
 
