@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# UPDATED 2020-11-22
+# UPDATED 2021-05-09
 
 ################################################################################################################### GIT
 
@@ -22,10 +22,18 @@ apt-get install vim -y
 apt-get install tree -y
 apt-get install terminator -y
 apt-get install sshpass -y
+
 apt-get install fish -y
-apt install google-drive-ocamlfuse -y
+chsh -s /usr/bin/fish
+curl -L https://get.oh-my.fish | fish
+omf install bobthefish
+
+
 apt install remmina remmina-plugin-rdp remmina-plugin-secret -y
 echo "alias lt='ls --human-readable --size -1 -S --classify'" >> ~/.bash_aliases
+
+# Google Drive (non native)
+apt install google-drive-ocamlfuse -y
 mkdir -p ~/GoogleDrive
 google-drive-ocamlfuse
 google-drive-ocamlfuse ~/GoogleDrive
@@ -71,17 +79,21 @@ libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
 
 curl https://pyenv.run | bash
 
+# BASH
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init -)"\nfi' >> ~/.bashrc
 exec "#SHELL"
 
+# FISH
+echo "set --export PYENV_ROOT $HOME/.pyenv" > ~/.config/fish/conf.d/pyenv.fish
+set -U fish_user_paths $HOME/.pyenv/bin $fish_user_paths
+echo -e '\n\n# pyenv init\nif command -v pyenv 1>/dev/null 2>&1\n  pyenv init - | source\nend' >> ~/.config/fish/config.fish
+
 # pyenv install --list
 # pyenv install <aVersion>
 # pyenv global <aVersion>
 # python -m test
-
-
 
 # python dependencies
 apt install python3-pip -y
@@ -91,6 +103,13 @@ pip3 install --upgrade setuptools
 apt install virtualenv -y
 apt install python3-venv
 
+# NVM
+omf install bass
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash # check in https://github.com/nvm-sh/nvm
+# ~/.config/fish/functions/nvm.fish
+function nvm
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
 
 apt-get install meld -y
 
@@ -242,17 +261,40 @@ apt install gnutls-dev -y
         [diff]
                 tool = meld
 
+[credential]
+	helper = store
+
+# ~/.git-credentials
+https://GusW:<............................>@github.com
 
 #################### Visual Studio Code
 https://code.visualstudio.com/
+
+##### Extensions
+# Atom Keymap
+# Atom One Dark Theme
+# Debugger for Firefox
+# Docker
+# EJS language support
+# ESLint
+# Go
+# Hashicorp Terraform
+# Jupyter
+# Markdown All in One
+# MySQL
+# MySQL Syntax
+# Prettier
+# Python
+# SQLTools
+# vscode-icons
+# YAML
+
 
 
 #################### ~/.config/Code/User/settings.json
 
 {
-    "diffEditor.renderSideBySide": false,
-
-    "editor.fontSize": 10,
+    "diffEditor.renderSideBySide": true,
     "editor.rulers": [119],
     "editor.renderIndentGuides": false,
     "editor.renderWhitespace": "all",
@@ -285,11 +327,8 @@ https://code.visualstudio.com/
 
     "workbench.editor.enablePreview": true,
     "workbench.activityBar.visible": true,
-
-    "window.zoomLevel": 0,
     "window.menuBarVisibility": "toggle",
     "vsicons.projectDetection.disableDetect": true,
-    "workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Atom One Dark",
 
     "editor.minimap.enabled": true,
@@ -299,43 +338,109 @@ https://code.visualstudio.com/
     "git.enableSmartCommit": true,
     "indenticator.style": "solid",
     "[html]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[javascript]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[css]": {
         "editor.tabSize": 2
     },
     "workbench.startupEditor": "newUntitledFile",
-    "editor.formatOnPaste": false,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
     "emmet.triggerExpansionOnTab": true,
     "extensions.ignoreRecommendations": false,
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressUpdateNotice": false,
-        "suppressWelcomeNotice": true
-    },
     "telemetry.enableTelemetry": false,
-    "gitlens.advanced.telemetry.enabled": false,
-    "gitlens.codeLens.enabled": false,
     "git.autofetch": true,
-    "python.disablePromptForFeatures": [
-        "flake8"
-    ]
+    "editor.minimap.maxColumn": 30,
+    "terminal.integrated.shell.linux": "/usr/bin/fish",
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontFamily": "'DroidSansMono Nerd Font'",
+    "atomKeymap.promptV3Features": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "debug.console.fontSize": 11,
+    "editor.fontSize": 10,
+    "workbench.iconTheme": "vscode-icons",
+    "jupyter.askForKernelRestart": false,
+    "jupyter.interactiveWindowMode": "perFile",
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }
+
+##### ~/.config/fish/config.fish
+
+# pyenv init
+if command -v pyenv 1>/dev/null 2>&1
+  pyenv init - | source
+end
+
+##### ~/.config/fish/fish_variables
+
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR __fish_initialized:3100
+SETUVAR fish_color_autosuggestion:555\x1ebrblack
+SETUVAR fish_color_cancel:\x2dr
+SETUVAR fish_color_command:005fd7
+SETUVAR fish_color_comment:990000
+SETUVAR fish_color_cwd:green
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_end:009900
+SETUVAR fish_color_error:ff0000
+SETUVAR fish_color_escape:00a6b2
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
+SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
+SETUVAR fish_color_normal:normal
+SETUVAR fish_color_operator:00a6b2
+SETUVAR fish_color_param:00afff
+SETUVAR fish_color_quote:999900
+SETUVAR fish_color_redirection:00afff
+SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_status:red
+SETUVAR fish_color_user:brgreen
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_completion:\x1d
+SETUVAR fish_pager_color_description:B3A06D\x1eyellow
+SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
+SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_user_paths:/home/gusw/\x2epyenv/bin
+
 
 
 #######################################################################################################################
 #################### DESKTOP APPS
 
 # Software Manager
-chromium 
+chromium
 stacer
 vlc
 gimp
