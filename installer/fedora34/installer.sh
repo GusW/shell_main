@@ -75,6 +75,16 @@ sudo dnf config-manager --set-enabled fedora-cisco-openh264
 sudo dnf install -y gstreamer1-plugin-openh264 mozilla-openh264
 # Firefox menu → Add-ons → Plugins and enable OpenH264 plugin.
 
+# VirtualBox
+sudo wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -P /etc/yum.repos.d/
+sudo dnf update
+sudo dnf install @development-tools
+sudo dnf install kernel-devel kernel-headers dkms qt5-qtx11extras  elfutils-libelf-devel zlib-devel
+sudo dnf install VirtualBox-...
+sudo usermod -a -G vboxusers gusw
+sudo /sbin/vboxconfig
+# https://www.virtualbox.org/wiki/Downloads -> Extension Pack
+
 ### ~/.config/Code/User/settings.json
 
 # {
