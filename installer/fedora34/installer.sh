@@ -28,6 +28,12 @@ sudo dnf config-manager \
 sudo dnf install docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker $USER
 sudo systemctl start docker
+# on boot
+# sudo systemctl enable docker.service
+# sudo systemctl enable containerd.service
+# disable boot
+# sudo systemctl disable docker.service
+# sudo systemctl disable containerd.service
 sudo docker images
 
 
@@ -84,6 +90,12 @@ sudo dnf install VirtualBox-...
 sudo usermod -a -G vboxusers gusw
 sudo /sbin/vboxconfig
 # https://www.virtualbox.org/wiki/Downloads -> Extension Pack
+
+# NORDVPN
+sudo rpm -i nordvpn-release-1.0.0-1.noarch.rpm
+sudo rpm -e nordvpn
+nordvpn login --nordaccount
+
 
 ### ~/.config/Code/User/settings.json
 
