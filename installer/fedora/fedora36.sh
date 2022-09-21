@@ -51,6 +51,8 @@ sudo docker images
 sudo dnf install docker-compose
 
 # PY/ENV
+sudo yum install bzip2-devel
+sudo yum install libffi-devel -y
 sudo dnf install make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel
 curl https://pyenv.run | bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
