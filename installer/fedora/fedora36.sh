@@ -128,3 +128,17 @@ sudo dnf install sirikali.x86_64
 
 # number of kernels retained
 cat /etc/dnf/dnf.conf | grep installonly_limit
+
+# JAVA
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+sudo rpm -Uvh jdk-17_linux-x64_bin.rpm
+cat <<EOF | sudo tee /etc/profile.d/jdk.sh
+export JAVA_HOME=/usr/java/default
+export PATH=\$PATH:\$JAVA_HOME/bin
+EOF
+source /etc/profile.d/jdk.sh
+
+# HEIC to jpg/png
+sudo dnf install libheif
+# heif-convert -q 100 image.HEIC new-image.jpg
+# for f in *.HEIC; do heif-convert -q 100 $f $f.jpg; done
