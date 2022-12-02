@@ -138,6 +138,27 @@ export PATH=\$PATH:\$JAVA_HOME/bin
 EOF
 source /etc/profile.d/jdk.sh
 
+# CITRIX
+# https://ask.fedoraproject.org/t/how-to-install-citrix-workspace-on-fedora-33/12129
+# https://askubuntu.com/questions/901448/citrix-receiver-error-1000119
+# 1a) Go to the following link to download the official Citrix Workspace app for Linux: Citrix Workspace app 2101 for Linux - Citrix 1.2k
+# 1b) Scroll down to “RPM Packages” then select "RedHat Full Package (Self-Service Support). Download the Citrix Workspace app for Linux by clicking “Download File”
+# 1c) Scroll down to “USB Support Package” and download the package by selecting “Download File”
+
+dnf install ICAClient-<press tab to autocomplete>
+dnf install ctxusb<press tab to autocomplete>
+
+# 3a) Go to your employers Citrix website
+# 3b) View your employers Citrix certificates in Firefox by clicking the lock next to the address bar then selecting “View Certificate”.
+# 3c) Download the “PEM (cert)” and “PEM (chain)” certificates.
+# 3d) Switch to root user (or use sudo) and copy the .crt CA certificate files to /opt/Citrix/ICAClient/keystore/cacerts/ folder.
+
+/opt/Citrix/ICAClient/util/ctx_rehash
+cd /opt/Citrix/ICAClient/keystore/
+sudo rm -rf cacerts
+sudo ln -s /etc/ssl/certs cacerts
+
+
 # HEIC to jpg/png
 sudo dnf install libheif
 # heif-convert -q 100 image.HEIC new-image.jpg
